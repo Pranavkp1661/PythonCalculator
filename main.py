@@ -1,15 +1,53 @@
 from tkinter import *
 
+expression = ""
 
+def press(num):
+
+    global expression
+
+    expression = expression + str(num)
+
+    equation.set(expression)
+
+def equalpress():
+
+    try:
+
+        global expression
+
+
+        total = str(eval(expression))
+
+        equation.set(total)
+
+
+        expression = ""
+
+
+    except:
+
+        equation.set(" error ")
+        expression = ""
+
+
+def clear():
+    global expression
+    expression = ""
+    equation.set("")
 if __name__ == "__main__":
     window = Tk()
-    # set the background colour of GUI window
+
     window.configure(bg="light green")
 
-    # set the title of GUI window
     window.title("Simple Calculator")
 
-    # set the configuration of GUI window
     window.geometry("500x350")
+
+    equation = StringVar()
+
+    expression_field = Entry(window, textvariable=equation)
+
+    expression_field.grid(columnspan=4, ipadx=70)
 
     window.mainloop()
